@@ -25,6 +25,7 @@ namespace CSH_Lab06
 
         public Login()
         {
+
             InitializeComponent();
             korisnici = XDocument.Load(@"C:\Users\esvegot\source\repos\CSH_Lab06\CSH_Lab06\korisnici.xml");
 
@@ -33,10 +34,6 @@ namespace CSH_Lab06
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             Boolean login = false;
-
-            if (textBoxUser.Text.Equals("") || textBoxPass.Text.Equals(""))
-                LoginFailed("Enter username and password");
-
 
             var k = from x in korisnici.Descendants("korisnik")
                     select new
@@ -58,6 +55,11 @@ namespace CSH_Lab06
                 LoginSuccessful(textBoxUser.Text);
                 textBoxUser.Text = "";
                 textBoxPass.Text = "";
+
+            }
+            else if (textBoxUser.Text.Equals("") || textBoxPass.Text.Equals(""))
+            {
+                LoginFailed("Enter username and password");
 
             }
             else
